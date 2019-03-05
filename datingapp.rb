@@ -32,7 +32,11 @@ end
 profile1 = Datingapp.new('Trid', '25', 'male')
 
 
-
-
-
 p (profile1.get_gender)
+
+puts("--------------------- Welcome to Easy Route to Love ---------------------")
+puts
+puts("Do you want to Signup or Log-In?")
+puts("Type 'Signup' to Signup for love or 'Login' to continue your quest of love")
+puts
+profile_signup_in = gets().chomp.downcase
