@@ -25,7 +25,8 @@ class Datingapp
                 puts "Password:"
                 login_typed_password = gets().chomp
                 if login_typed_password == 'Password1'
-                    puts "Welcome to your profile"
+                    # puts "Welcome to your profile"
+                    static_profile_page()
                 elsif login_typed_password != 'Password1'
                     puts "Do you need to reset your password? (Y)"
                     reset_password_input = gets().chomp.downcase
@@ -43,6 +44,18 @@ class Datingapp
             puts "Please try your log-in again"
             profile_sign_in()
         end
+    end
+
+    def static_profile_page
+        puts("--------------------- Welcome to Easy Route to Love ---------------------")
+        puts("Welcome: #{@name}")
+        puts
+        puts
+        puts
+        puts
+        puts
+        puts
+        puts("--------------------- Welcome to Easy Route to Love ---------------------")
     end
 
     def to_string()
