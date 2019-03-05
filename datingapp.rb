@@ -1,5 +1,6 @@
 require 'pry'
 require 'faker'
+require 'colorize'
 
 class Datingapp
     attr_reader(:name, :age, :sex, :address, :sport_team, :music_genre, :favourite_animal)
@@ -149,7 +150,18 @@ class Datingapp
         print"----------------------------------------------------\n"
         print "write a message lover boy: "
         message_input = gets().chomp
-        print "Message sent!\n"
+        print "\t\t\t\t\t\t#{message_input}\n".colorize(:blue)
+        print "\t\t\t\t\t\tMessage sent!\n"
+        print "no freak?\n".colorize(:light_magenta)
+        print "YOU HAVE BEEN BLOCKED\n"
+    end
+
+    def replying_text
+        message_sender = Faker::Name.name
+        print "#{message_sender}: Hello! Would you like to enjoy a bowl of cornflakes?\n".colorize(:light_magenta)
+        message_input1 = gets().chomp
+        print "\t\t\t\t\t\t\t#{message_input1}\n".colorize(:blue)
+        print "\t\t\t\t\t\t\tMessage sent!\n"
     end
 
     def get_gender
@@ -172,7 +184,8 @@ profile1.password = 'Password1'
 # p (profile1.get_gender)
 
 
-# puts("--------------------- Welcome to Easy Route to Love ---------------------")
-# puts
-profile1.profile_sign_in
+puts("--------------------- Welcome to Easy Route to Love ---------------------")
+puts
+
+profile1.send_user_a_message
 
