@@ -1,22 +1,28 @@
 require 'pry'
 
 class Datingapp
-    attr_reader(:name, :age, :sex)
+    attr_reader(:name, :age, :sex, :address, :sport_team, :music_genre, :favourite_animal)
     attr_writer(:password)
     attr_accessor(:login)
-    def initialize(name, age, sex)
+    def initialize(name, age, sex, address, sport_team, music_genre, favourite_animal)
         @name = name
         @age = age
         @sex = sex
+        @address = address
+        @sport_team = sport_team
+        @music_genre = music_genre
+        @favourite_animal = favourite_animal
         @password = ""
         @login = ""
     end
 
     def profile_sign_in
+        puts("--------------------- Welcome to Easy Route to Love ---------------------")
         puts("Do you want to Log-In? to continue your quest for love and get matched to singles in your area")
         puts("Type 'login' for love")
         puts
         user_sign_in = gets().chomp.downcase
+        puts("--------------------- Welcome to Easy Route to Love ---------------------")
         case user_sign_in
         when "login"
             puts "Login Name:"
@@ -47,8 +53,12 @@ class Datingapp
     end
 
     def static_profile_page
+        time = Time.new
         puts("--------------------- Welcome to Easy Route to Love ---------------------")
         puts("Welcome: #{@name}")
+        puts("Today is #{time.ctime}")
+        puts
+        puts
         puts
         puts
         puts
@@ -56,10 +66,6 @@ class Datingapp
         puts
         puts
         puts("--------------------- Welcome to Easy Route to Love ---------------------")
-    end
-
-    def to_string()
-        "New profile: #{@name}, #{@age}, #{@sex}"
     end
 
     def reset_password
@@ -114,12 +120,12 @@ class Datingapp
     end
 end
 
-profile1 = Datingapp.new('Trid', '25', 'male')
+profile1 = Datingapp.new('Trid', '25', 'male', 'Chicago', 'Chicago Bulls', 'Hip Hop', 'Hippo')
 profile1.login = 'triktor'
 profile1.password = 'Password1'
 
 # p (profile1.get_gender)
 
-puts("--------------------- Welcome to Easy Route to Love ---------------------")
-puts
+# puts("--------------------- Welcome to Easy Route to Love ---------------------")
+# puts
 profile1.profile_sign_in
