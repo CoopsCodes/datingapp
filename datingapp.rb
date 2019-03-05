@@ -1,13 +1,17 @@
 require 'pry'
 
 class Datingapp
-    attr_reader(:name, :age, :sex)
+    attr_reader(:name, :age, :sex, :address, :sport_team, :music_genre, :favourite_animal)
     attr_writer(:password)
     attr_accessor(:login)
-    def initialize(name, age, sex)
+    def initialize(name, age, sex, address, sport_team, music_genre, favourite_animal)
         @name = name
         @age = age
         @sex = sex
+        @address = address
+        @sport_team = sport_team
+        @music_genre = music_genre
+        @favourite_animal = favourite_animal
         @password = ""
         @login = ""
     end
@@ -114,7 +118,7 @@ class Datingapp
     end
 end
 
-profile1 = Datingapp.new('Trid', '25', 'male')
+profile1 = Datingapp.new('Trid', '25', 'male', 'Chicago', 'Chicago Bulls', 'Hip Hop', 'Hippo')
 profile1.login = 'triktor'
 profile1.password = 'Password1'
 
