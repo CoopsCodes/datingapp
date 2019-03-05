@@ -1,0 +1,1 @@
+profile1 = Datingapp.new('Trid', '25', 'male')
