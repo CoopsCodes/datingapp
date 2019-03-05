@@ -1,4 +1,5 @@
 require 'pry'
+require 'faker'
 
 class Datingapp
     attr_reader(:name, :age, :sex, :address, :sport_team, :music_genre, :favourite_animal)
@@ -107,6 +108,50 @@ class Datingapp
         end
     end
 
+    def user_profile_true_love
+        user = []
+        user_name = Faker::Name.name
+        user_age = Faker::Number.between(18, 40)
+        user_address = Faker::Address.city
+        user_team = Faker::Team.name
+        user_music = Faker::Music.genre
+        user_animal = Faker::Creature::Animal.name
+        user << user_name
+        user << user_age
+        user << user_address
+        user << user_team
+        user << user_music
+        user << user_animal
+        user.each_with_index do |item,index|
+            puts ("#{index + 1}. \t#{item}")
+        end
+        print "Would you like to see another one? Or send a message?\n"
+        print "'new match' for a new person or 'message' to send a message\n" 
+        input2 = gets().chomp
+        if  input2 == "new match"
+            user_profile_true_love()
+        elsif input2 == "message"
+            send_user_a_message
+        end
+    end
+
+    def display_matches
+        print "Do you want to see your new matches?(Y/N)\n"
+        input = gets().chomp
+        if input == "Y"
+            user_profile_true_love()
+        else
+            static_profile_page()
+        end
+    end
+    
+    def send_user_a_message
+        print"----------------------------------------------------\n"
+        print "write a message lover boy: "
+        message_input = gets().chomp
+        print "Message sent!\n"
+    end
+
     def get_gender
         print("fkn gender?\n")
         gender = gets().chomp.downcase
@@ -126,6 +171,8 @@ profile1.password = 'Password1'
 
 # p (profile1.get_gender)
 
+
 # puts("--------------------- Welcome to Easy Route to Love ---------------------")
 # puts
 profile1.profile_sign_in
+
