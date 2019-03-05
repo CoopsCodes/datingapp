@@ -24,6 +24,7 @@ class Datingapp
         puts("Type 'login' for love")
         puts
         user_sign_in = gets().chomp.downcase
+        puts("--------------------- Welcome to Easy Route to Love ---------------------")
         case user_sign_in
         when "login"
             puts("Login Name:")
@@ -63,22 +64,11 @@ class Datingapp
         puts
         puts
         puts
+        puts
         puts("Check messages                         - 1")
         puts("Check your luuuuurrrrrrvvvvve matches  - 2")
         puts
         puts("--------------------- Welcome to Easy Route to Love ---------------------")
-        puts("What would you like to do today?")
-        static_profile_page_input = gets().chomp.to_i
-        if static_profile_page_input == 1
-            puts ("Sure lets check your messages hot stuff")
-            check_messages()
-        elsif static_profile_page_input == 2
-            puts "Lets see who is lucky today!"
-            display_matches()
-        else
-            puts("Please try that again")
-            static_profile_page()
-        end
     end
 
     def reset_password
@@ -207,9 +197,6 @@ profile1.password = 'Password1'
 
 # p (profile1.get_gender)
 
-puts("--------------------- Welcome to Easy Route to Love ---------------------")
-puts
-
-profile1.send_user_a_message
-
-
+# puts("--------------------- Welcome to Easy Route to Love ---------------------")
+# puts
+profile1.profile_sign_in
