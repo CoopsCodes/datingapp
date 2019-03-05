@@ -59,10 +59,6 @@ class Datingapp
         puts("Welcome: #{@name}")
         puts("Today is #{time.ctime}")
         puts
-<<<<<<< HEAD
-        puts
-=======
->>>>>>> 9a240dde02df523625813391573feb509dc283b2
         puts
         puts
         puts
@@ -72,8 +68,6 @@ class Datingapp
         puts("Check your luuuuurrrrrrvvvvve matches  - 2")
         puts
         puts("--------------------- Welcome to Easy Route to Love ---------------------")
-<<<<<<< HEAD
-=======
         puts("What would you like to do today?")
         static_profile_page_input = gets().chomp.to_i
         if static_profile_page_input == 1
@@ -86,7 +80,6 @@ class Datingapp
             puts("Please try that again")
             static_profile_page()
         end
->>>>>>> 9a240dde02df523625813391573feb509dc283b2
     end
 
     def reset_password
@@ -215,15 +208,7 @@ profile1.password = 'Password1'
 
 # p (profile1.get_gender)
 
-<<<<<<< HEAD
-# puts("--------------------- Welcome to Easy Route to Love ---------------------")
-# puts
-profile1.profile_sign_in
-=======
 puts("--------------------- Welcome to Easy Route to Love ---------------------")
 puts
 
 profile1.send_user_a_message
-
-
->>>>>>> 9a240dde02df523625813391573feb509dc283b2
