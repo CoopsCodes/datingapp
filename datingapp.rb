@@ -1,7 +1,10 @@
-require 'pry'
-require 'faker'
-require 'colorize'
-require 'io/console'
+
+require 'pry' # used for testing
+require 'faker' # for the random data used thoughout the program, users and messges
+require 'colorize' # used to colourise the text
+require 'io/console' # blanks out the password, during input feature
+require 'tty-spinner'
+
 
 class Datingapp
     attr_reader(:name, :age, :sex, :address, :sport_team, :music_genre, :favourite_animal)
@@ -20,19 +23,32 @@ class Datingapp
     end
 
     def profile_sign_in
-        puts("--------------------- Welcome to Easy Route to Love ---------------------")
+        puts("--------------------------------- Welcome to Easy Route to Love ---------------------------------")
         puts("Do you want to Log-In? to continue your quest for love and get matched to singles in your area")
-        puts("Type 'login' for love")
-        puts
+        puts("                        __          __      ")
+        puts("      _________  __  __/ /____     / /_____ ")
+        puts("     / ___/ __ \\/ / / / __/ _ \\   / __/ __ \\")
+        puts("    / /  / /_/ / /_/ / /_/  __/  / /_/ /_/ /")
+        puts("   /_/   \\____/\\__,_/\\__/\\___/   \\__/\\____/ ")
+        puts("__/\\\\\\\\\\\\_______________________________________________        ")
+        puts(" _\\////\\\\\\_______________________________________________       ")
+        puts("  ____\\/\\\\\\_______________________________________________      ")
+        puts("   ____\\/\\\\\\________/\\\\\\\\\\_____/\\\\\\____/\\\\\\_____/\\\\\\\\\\\\\\\\__     ")
+        puts("    ____\\/\\\\\\______/\\\\\\///\\\\\\__\\//\\\\\\__/\\\\\\____/\\\\\\/////\\\\\\_    ")
+        puts("     ____\\/\\\\\\_____/\\\\\\__\\//\\\\\\__\\//\\\\\\/\\\\\\____/\\\\\\\\\\\\\\\\\\\\\\__   ")
+        puts("      ____\\/\\\\\\____\\//\\\\\\__/\\\\\\____\\//\\\\\\\\\\____\\//\\\\///////___  ")
+        puts("       __/\\\\\\\\\\\\\\\\\\__\\///\\\\\\\\\\/______\\//\\\\\\______\\//\\\\\\\\\\\\\\\\\\\\_ ")
+        puts("        _\\/////////_____\\/////_________\\///________\\//////////__")
+        print("Type 'login' for love: ")
         user_sign_in = gets().chomp.downcase
-        puts("--------------------- Welcome to Easy Route to Love ---------------------")
+        puts("--------------------------------- Welcome to Easy Route to Love ---------------------------------")
         case user_sign_in
         when "login"
-            puts("Login Name:")
+            puts("Login Name: ")
             login_typed_name = gets().chomp.downcase
             if login_typed_name == 'triktor'
                 puts "Password:"
-                login_typed_password = gets().chomp
+                login_typed_password = STDIN.noecho(&:gets).chomp
                 if login_typed_password == 'Password1'
                     static_profile_page()
                 elsif login_typed_password != 'Password1'
@@ -56,7 +72,7 @@ class Datingapp
 
     def static_profile_page
         time = Time.new
-        puts("--------------------- Welcome to Easy Route to Love ---------------------")
+        puts("--------------------------------- Welcome to Easy Route to Love ---------------------------------")
         puts("Welcome: #{@name}")
         puts("Today is #{time.ctime}")
         puts
@@ -68,7 +84,7 @@ class Datingapp
         puts("Check messages                         - 1")
         puts("Check your luuuuurrrrrrvvvvve matches  - 2")
         puts
-        puts("--------------------- Welcome to Easy Route to Love ---------------------")
+        puts("--------------------------------- Welcome to Easy Route to Love ---------------------------------")
         puts("What would you like to do today?")
         static_profile_page_input = gets().chomp.to_i
         if static_profile_page_input == 1
@@ -146,7 +162,15 @@ class Datingapp
         print("To see a new match press  '1'\n")
         print("Or send a message to this person type  '2'\n")
         input2 = gets().chomp.downcase
+
         if  input2 == "1"
+            puts
+            spinner = TTY::Spinner.new("[:spinner] Loading your perfect match ...", format: :pulse_2)
+            spinner.auto_spin # Automatic animation with default interval
+            sleep(2) # Perform task
+            spinner.stop('Done!')
+            puts
+
             user_profile_true_love()
         elsif input2 == "2"
             send_user_a_message
@@ -160,6 +184,12 @@ class Datingapp
         print "Do you want to see your new matches?(Y/N)\n"
         input = gets().chomp.downcase
         if input == "y"
+            puts
+            spinner = TTY::Spinner.new("[:spinner] Loading your perfect match ...", format: :pulse_2)
+            spinner.auto_spin # Automatic animation with default interval
+            sleep(2) # Perform task
+            spinner.stop('Done!')
+            puts
             user_profile_true_love()
         else
             static_profile_page()
@@ -167,8 +197,9 @@ class Datingapp
     end
     
     def send_user_a_message
+
+        puts("--------------------------------- Welcome to Easy Route to Love ---------------------------------")
         sp_quote = Faker::TvShows::Simpsons.quote
-        puts("--------------------- Welcome to Easy Route to Love ---------------------")
         puts("write your message lover boy: ")
         puts
         message_input = gets().chomp
@@ -220,4 +251,13 @@ profile1 = Datingapp.new('Trid', '25', 'male', 'Chicago', 'Chicago Bulls', 'Hip 
 profile1.login = 'triktor'
 profile1.password = 'Password1'
 
+
+profile1.display_matches
+
+# spinner = TTY::Spinner.new("[:spinner] Loading your perfect match ...", format: :pulse_2)
+# spinner.auto_spin # Automatic animation with default interval
+# sleep(2) # Perform task
+# spinner.stop('Done!')
+
 profile1.replying_text
+
