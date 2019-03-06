@@ -1,6 +1,7 @@
 require 'pry'
 require 'faker'
 require 'colorize'
+require 'io/console'
 
 class Datingapp
     attr_reader(:name, :age, :sex, :address, :sport_team, :music_genre, :favourite_animal)
@@ -142,12 +143,12 @@ class Datingapp
             puts ("4. Team:    #{user[3]}")
             puts ("5. Music:   #{user[4]}")
             puts ("6. Animal:  #{user[5]}\n")
-        print("To see a new match type 'New Match'\n")
-        print("Or send a message to this person type 'Message'\n")
+        print("To see a new match press  '1'\n")
+        print("Or send a message to this person type  '2'\n")
         input2 = gets().chomp.downcase
-        if  input2 == "new match"
+        if  input2 == "1"
             user_profile_true_love()
-        elsif input2 == "message"
+        elsif input2 == "2"
             send_user_a_message
         else
             puts("Try that input again georgous")
@@ -166,13 +167,14 @@ class Datingapp
     end
     
     def send_user_a_message
+        sp_quote = Faker::TvShows::Simpsons.quote
         puts("--------------------- Welcome to Easy Route to Love ---------------------")
         puts("write your message lover boy: ")
         puts
         message_input = gets().chomp
         print "\t\t\t\t\t\tTriktor:#{message_input}\n".colorize(:blue)
         print "\t\t\t\t\t\tMessage sent!\n"
-        print "no freak?\n".colorize(:light_magenta)
+        print "#{sp_quote}\n".colorize(:light_magenta)
         print "YOU HAVE BEEN BLOCKED\n"
         display_matches
     end
@@ -182,29 +184,33 @@ class Datingapp
         celebrity_crushes.each_with_index do |user, index|
             puts ("#{index + 1}. \t #{user}")
         end
+        sp_quote = Faker::TvShows::Simpsons.quote
         print "Pick the match you would like to speak to\n"
         input_read_message = gets().strip
         if input_read_message == "1" 
-                puts "#{celebrity_crushes[0]}: you like cornflakes?".colorize(:light_magenta)
+                puts "#{celebrity_crushes[0]}: #{sp_quote}".colorize(:light_magenta)
         elsif input_read_message == "2"
-            puts "#{celebrity_crushes[1]}: how about some cornflakes baby?".colorize(:light_magenta)
+            puts "#{celebrity_crushes[1]}: #{sp_quote}".colorize(:light_magenta)
         elsif input_read_message == "3"
-            puts "#{celebrity_crushes[2]}: the cornflakes are on me today!".colorize(:light_magenta)
+            puts "#{celebrity_crushes[2]}: #{sp_quote}".colorize(:light_magenta)
         elsif input_read_message == "4"
-            puts "#{celebrity_crushes[3]}: hurry up with the cornflakes mate... honestly".colorize(:light_magenta)
+            puts "#{celebrity_crushes[3]}: #{sp_quote}".colorize(:light_magenta)
         elsif input_read_message == "5"
-            puts "#{celebrity_crushes[4]}: you had me at cornflakes".colorize(:light_magenta)
+            puts "#{celebrity_crushes[4]}: #{sp_quote}".colorize(:light_magenta)
         else
             puts "put in a valid number"
         end
-        print "\t\t\t\t\t\t reply:"
-        reply_input = gets().chomp
+        print "\n"
+        reply_input = gets.chomp
         print "\t\t\t\t\t\tTriktor:#{reply_input}\n".colorize(:blue)
+        print "\t\t\t\t\t\tMessage sent!\n\n"
         print "Would you like to send another message or go back to profile\n"
+        print "To see another message press '1'\n"
+        print "Or to go back to profile press '2'\n"
         message_profile_input = gets().strip
-        if message_profile_input == 'message'
+        if message_profile_input == '1'
             replying_text()
-        elsif message_profile_input == 'profile'
+        elsif message_profile_input == '2'
             static_profile_page()
         end
     end
@@ -214,4 +220,4 @@ profile1 = Datingapp.new('Trid', '25', 'male', 'Chicago', 'Chicago Bulls', 'Hip 
 profile1.login = 'triktor'
 profile1.password = 'Password1'
 
-profile1.user_profile_true_love
+profile1.replying_text
