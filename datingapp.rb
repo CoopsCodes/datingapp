@@ -136,8 +136,6 @@ class Datingapp
         user << user_team
         user << user_music
         user << user_animal
-        # user.each_with_index do |item,index|
-        #     puts ("#{index + 1}. \t#{item}")
             puts ("1. Name:    #{user[0]}")
             puts ("2. Age:     #{user[1]}")
             puts ("3. City:    #{user[2]}")
