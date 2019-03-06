@@ -1,6 +1,5 @@
 require 'pry'
 require 'faker'
-require 'colorize'
 
 class Datingapp
     attr_reader(:name, :age, :sex, :address, :sport_team, :music_genre, :favourite_animal)
@@ -24,7 +23,6 @@ class Datingapp
         puts("Type 'login' for love")
         puts
         user_sign_in = gets().chomp.downcase
-        puts("--------------------- Welcome to Easy Route to Love ---------------------")
         case user_sign_in
         when "login"
             puts("Login Name:")
@@ -59,10 +57,6 @@ class Datingapp
         puts("Welcome: #{@name}")
         puts("Today is #{time.ctime}")
         puts
-<<<<<<< HEAD
-        puts
-=======
->>>>>>> master
         puts
         puts
         puts
@@ -72,13 +66,11 @@ class Datingapp
         puts("Check your luuuuurrrrrrvvvvve matches  - 2")
         puts
         puts("--------------------- Welcome to Easy Route to Love ---------------------")
-<<<<<<< HEAD
-=======
         puts("What would you like to do today?")
         static_profile_page_input = gets().chomp.to_i
         if static_profile_page_input == 1
             puts ("Sure lets check your messages hot stuff")
-            replying_text
+            check_messages()
         elsif static_profile_page_input == 2
             puts "Lets see who is lucky today!"
             display_matches()
@@ -86,7 +78,6 @@ class Datingapp
             puts("Please try that again")
             static_profile_page()
         end
->>>>>>> master
     end
 
     def reset_password
@@ -143,12 +134,9 @@ class Datingapp
         user << user_team
         user << user_music
         user << user_animal
-            puts ("1. Name:    #{user[0]}")
-            puts ("2. Age:     #{user[1]}")
-            puts ("3. City:    #{user[2]}")
-            puts ("4. Team:    #{user[3]}")
-            puts ("5. Music:   #{user[4]}")
-            puts ("6. Animal:  #{user[5]}\n")
+        user.each_with_index do |item,index|
+            puts ("#{index + 1}. \t#{item}")
+        end
         print("To see a new match type 'New Match'\n")
         print("Or send a message to this person type 'Message'\n")
         input2 = gets().chomp.downcase
@@ -171,48 +159,33 @@ class Datingapp
             static_profile_page()
         end
     end
+
+    def check_messages
+        puts
+        puts
+        puts
+        puts("under construction")
+        static_profile_page()
+    end
     
     def send_user_a_message
         puts("--------------------- Welcome to Easy Route to Love ---------------------")
         puts("write your message lover boy: ")
         puts
         message_input = gets().chomp
-        print "\t\t\t\t\t\tTriktor:#{message_input}\n".colorize(:blue)
-        print "\t\t\t\t\t\tMessage sent!\n"
-        print "no freak?\n".colorize(:light_magenta)
-        print "YOU HAVE BEEN BLOCKED\n"
-        display_matches
+        print("Message sent!\n")
+        static_profile_page()
     end
 
-    def replying_text
-        celebrity_crushes = ['Britney Spears', 'Sarah Michell Gellar', 'Isla Fisher', 'Christina Agulera', 'Betty White']
-        celebrity_crushes.each_with_index do |user, index|
-            puts ("#{index + 1}. \t #{user}")
-        end
-        print "Pick the match you would like to speak to\n"
-        input_read_message = gets().strip
-        if input_read_message == "1" 
-                puts "#{celebrity_crushes[0]}: you like cornflakes?".colorize(:light_magenta)
-        elsif input_read_message == "2"
-            puts "#{celebrity_crushes[1]}: how about some cornflakes baby?".colorize(:light_magenta)
-        elsif input_read_message == "3"
-            puts "#{celebrity_crushes[2]}: the cornflakes are on me today!".colorize(:light_magenta)
-        elsif input_read_message == "4"
-            puts "#{celebrity_crushes[3]}: hurry up with the cornflakes mate... honestly".colorize(:light_magenta)
-        elsif input_read_message == "5"
-            puts "#{celebrity_crushes[4]}: you had me at cornflakes".colorize(:light_magenta)
+    def get_gender
+        print("fkn gender?\n")
+        gender = gets().chomp.downcase
+        if gender == 'male'
+            puts('ur a boy!')
+        elsif gender == 'female'
+            puts('ur a girl!')
         else
-            puts "put in a valid number"
-        end
-        print "\t\t\t\t\t\t reply:"
-        reply_input = gets().chomp
-        print "\t\t\t\t\t\tTriktor:#{reply_input}\n".colorize(:blue)
-        print "Would you like to send another message or go back to profile\n"
-        message_profile_input = gets().strip
-        if message_profile_input == 'message'
-            replying_text()
-        elsif message_profile_input == 'profile'
-            static_profile_page()
+            puts('the fk?')
         end
     end
 end
@@ -221,12 +194,15 @@ profile1 = Datingapp.new('Trid', '25', 'male', 'Chicago', 'Chicago Bulls', 'Hip 
 profile1.login = 'triktor'
 profile1.password = 'Password1'
 
-<<<<<<< HEAD
 # p (profile1.get_gender)
+
 
 # puts("--------------------- Welcome to Easy Route to Love ---------------------")
 # puts
+# ------------
+# test login
 profile1.profile_sign_in
-=======
-profile1.user_profile_true_love
->>>>>>> master
+# ------------
+# test homepage
+# profile1.static_profile_page
+# ------------
