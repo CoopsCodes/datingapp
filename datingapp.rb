@@ -1,12 +1,13 @@
-
 require 'pry' # used for testing
 require 'faker' # for the random data used thoughout the program, users and messges
 require 'colorize' # used to colourise the text
 require 'io/console' # blanks out the password, during input feature
-require 'tty-spinner'
+require 'tty-spinner' # this creates the loading bar between screens that 'load'
+#       !!!!!!these are the login details youll need to run the program, they are found at the bottom of the page, but placed here for your convenience.
+# profile1.login = 'triktor'          
+# profile1.password = 'Password1'
 
-
-class Datingapp
+class Datingapp #the method defines the data that is involved in the site matches
     attr_reader(:name, :age, :sex, :address, :sport_team, :music_genre, :favourite_animal)
     attr_writer(:password)
     attr_accessor(:login)
@@ -22,9 +23,11 @@ class Datingapp
         @login = ""
     end
 
-    def profile_sign_in
+    def profile_sign_in # the launch page that we log into, provides teh case statement that chooses to log in or send off to reset the password
         puts("--------------------------------- Welcome to Easy Route to Love ---------------------------------")
-        puts("Do you want to Log-In? to continue your quest for love and get matched to singles in your area")
+        puts
+        puts("           Log in today to continue your quest for love and find singles in your area")
+        puts
         puts("                        __          __      ")
         puts("      _________  __  __/ /____     / /_____ ")
         puts("     / ___/ __ \\/ / / / __/ _ \\   / __/ __ \\")
@@ -39,6 +42,8 @@ class Datingapp
         puts("      ____\\/\\\\\\____\\//\\\\\\__/\\\\\\____\\//\\\\\\\\\\____\\//\\\\///////___  ")
         puts("       __/\\\\\\\\\\\\\\\\\\__\\///\\\\\\\\\\/______\\//\\\\\\______\\//\\\\\\\\\\\\\\\\\\\\_ ")
         puts("        _\\/////////_____\\/////_________\\///________\\//////////__")
+        puts
+        puts
         print("Type 'login' for love: ")
         user_sign_in = gets().chomp.downcase
         puts("--------------------------------- Welcome to Easy Route to Love ---------------------------------")
@@ -70,28 +75,34 @@ class Datingapp
         end
     end
 
-    def static_profile_page
+    def static_profile_page #the home page, this loads the user name from our profile and also displays the date from Time.new, branches into matches or messages
         time = Time.new
         puts("--------------------------------- Welcome to Easy Route to Love ---------------------------------")
-        puts("Welcome: #{@name}")
         puts("Today is #{time.ctime}")
         puts
+        puts("Welcome: #{@name}                __          _    __                    __                        ")
+        puts("                               / /_  ____ _(_)  / /_  ____ _____  ____/ /________  ____ ___  ___ ")
+        puts("                              / __ \\/ __ `/ /  / __ \\/ __ `/ __ \\/ __  / ___/ __ \\/ __ `__ \\/ _ \\")
+        puts("                             / / / / /_/ / /  / / / / /_/ / / / / /_/ (__  ) /_/ / / / / / /  __/")
+        puts("                            /_/ /_/\\__,_/_/  /_/ /_/\\__,_/_/ /_/\\__,_/____/\\____/_/ /_/ /_/\\___/ ")
         puts
         puts
         puts
         puts
         puts
-        puts("Check messages                         - 1")
-        puts("Check your luuuuurrrrrrvvvvve matches  - 2")
+        puts
+        puts
+        puts("Check messages                              select: 1")
+        puts("Check your luuuuurrrrrrvvvvve matches       select: 2")
         puts
         puts("--------------------------------- Welcome to Easy Route to Love ---------------------------------")
         puts("What would you like to do today?")
         static_profile_page_input = gets().chomp.to_i
         if static_profile_page_input == 1
             puts ("Sure lets check your messages hot stuff")
-            replying_text
+            replying_text()
+            
         elsif static_profile_page_input == 2
-            puts "Lets see who is lucky today!"
             display_matches()
         else
             puts("Please try that again")
@@ -116,29 +127,29 @@ class Datingapp
                 end
             end
             if (user_new_password == retyped_new_password)
-                puts = "Passwords match! Now dont be so stupud next time"
+                puts = "Passwords match sexy beast! Go forth n make love."
                 # static_profile_page()
             end
         end
     end
 
-    def forgot_password
+    def forgot_password # if the password is wrong it asks to reset, if needs reset it sends you to reset_password
         user_response = ""
         while (user_response != 'y') || (user_response != 'n')
-            puts "Did you forget your password dumbass? (Y/N)"
+            puts "Did you forget your password? (Y/N)"
             user_response = gets().chomp.downcase
             if (user_response == 'y')
                 reset_password()
                 return
             elsif (user_response == 'n')
-                puts "Thank you for wasting my time"
+                puts "Ooops"
                 profile_sign_in()
             else
-                puts "Try your input again dumbo (Y/N)"
+                puts "Try your input again (Y/N)"
             end
         end
     end
-
+   #Faker randomly generated our true love. Their name, address and likes are pushed together to create the sense of a character profile. After it's produced, the profile is displayed with numbers and topics. i.e 1. Name.
     def user_profile_true_love
         user = []
         user_name = Faker::Name.name
@@ -153,30 +164,39 @@ class Datingapp
         user << user_team
         user << user_music
         user << user_animal
-            puts ("1. Name:    #{user[0]}")
-            puts ("2. Age:     #{user[1]}")
-            puts ("3. City:    #{user[2]}")
-            puts ("4. Team:    #{user[3]}")
-            puts ("5. Music:   #{user[4]}")
-            puts ("6. Animal:  #{user[5]}\n")
-        print("To see a new match press  '1'\n")
-        print("Or send a message to this person type  '2'\n")
+        puts("--------------------------------- Welcome to Easy Route to Love ---------------------------------")
+        puts
+        puts("1. Name:    #{user[0]}")
+        puts("2. Age:     #{user[1]}")
+        puts("3. City:    #{user[2]}")
+        puts("4. Team:    #{user[3]}")
+        puts("5. Music:   #{user[4]}")
+        puts("6. Animal:  #{user[5]}\n")
+        puts("                                                                        __          __         ")
+        puts("                                                    ____ ___________   / /_  ____ _/ /_  __  __")
+        puts("                                                   / __ `/ ___/ ___/  / __ \\/ __ `/ __ \\/ / / /")
+        puts("                                                  / /_/ / /  / /     / /_/ / /_/ / /_/ / /_/ / ")
+        puts("                                                  \\__, /_/  /_/     /_.___/\\__,_/_.___/\\__, /  ")
+        puts("                                                 /____/                               /____/   ")
+        puts
+        print("Does this one spark joy? Send them a message ;-)           select: 1\n")
+        print("Does this one not spark joy? Then see another              select: 2\n")
+        puts
         input2 = gets().chomp.downcase
 
-        if  input2 == "1"
+        if  input2 == "2"
             puts
             spinner = TTY::Spinner.new("[:spinner] Loading your perfect match ...", format: :pulse_2)
             spinner.auto_spin # Automatic animation with default interval
             sleep(2) # Perform task
             spinner.stop('Done!')
             puts
-
             user_profile_true_love()
-        elsif input2 == "2"
-            send_user_a_message
+        elsif input2 == "1"
+            send_user_a_message()
         else
             puts("Try that input again georgous")
-            user_profile_true_love() # this loops back to the beginning but because the profile is set to random data the message is refreshed.
+            user_profile_true_love()
         end
     end
 
@@ -197,26 +217,46 @@ class Datingapp
     end
     
     def send_user_a_message
-
         puts("--------------------------------- Welcome to Easy Route to Love ---------------------------------")
         sp_quote = Faker::TvShows::Simpsons.quote
-        puts("write your message lover boy: ")
-        puts
+        print("Write your message lover boy: ")
         message_input = gets().chomp
-        print "\t\t\t\t\t\tTriktor:#{message_input}\n".colorize(:blue)
-        print "\t\t\t\t\t\tMessage sent!\n"
-        print "#{sp_quote}\n".colorize(:light_magenta)
-        print "YOU HAVE BEEN BLOCKED\n"
+        puts
+        print "Triktor: #{message_input}\n".colorize(:blue)
+        print "                                                                                   Message sent!\n"
+        puts
+        print "User Message: #{sp_quote}\n".colorize(:light_magenta)
+        puts
+        print "                                                                         PROFILE HAS BLOCKED YOU\n".colorize(:red)
+        puts("-------------------------------------------------------------------------------------------------")
         display_matches
     end
-
+    #After the beautiful loading spinner does its job our celebrity array is produced in a horizontal row to create the list of matches that we have the opportunity to talk to. Picking a number launches into a conversation that prompts 'Faker' to give us a randomly generated Simpsons quote that we're using as someone talking in a conversation.
     def replying_text
+        spinner = TTY::Spinner.new("[:spinner] Loading your messages ...", format: :pulse_2)
+        spinner.auto_spin # Automatic animation with default interval
+        sleep(2) # Perform task
+        spinner.stop('Done!')
+        puts("--------------------------------- Welcome to Easy Route to Love ---------------------------------")
+        puts
+        puts("   __  __                 __                             ____            ")
+        puts("  / /_/ /_  ___     _____/ /_  ____  ________  ____     / __/__ _      __")
+        puts(" / __/ __ \\/ _ \\   / ___/ __ \\/ __ \\/ ___/ _ \\/ __ \\   / /_/ _ \\ | /| / /")
+        puts("/ /_/ / / /  __/  / /__/ / / / /_/ (__  )  __/ / / /  / __/  __/ |/ |/ / ")
+        puts("\\__/_/ /_/\\___/   \\___/_/ /_/\\____/____/\\___/_/ /_/  /_/  \\___/|__/|__/  ")
+        puts
+        puts
         celebrity_crushes = ['Britney Spears', 'Sarah Michell Gellar', 'Isla Fisher', 'Christina Agulera', 'Betty White']
         celebrity_crushes.each_with_index do |user, index|
             puts ("#{index + 1}. \t #{user}")
         end
+        puts
+        puts
+        puts
+        puts
+        puts
         sp_quote = Faker::TvShows::Simpsons.quote
-        print "Pick the match you would like to speak to\n"
+        print "Who do you see in your future, today?\n"
         input_read_message = gets().strip
         if input_read_message == "1" 
                 puts "#{celebrity_crushes[0]}: #{sp_quote}".colorize(:light_magenta)
@@ -232,12 +272,16 @@ class Datingapp
             puts "put in a valid number"
         end
         print "\n"
+        puts("What would you like to say hotttt stuffssss?")
         reply_input = gets.chomp
-        print "\t\t\t\t\t\tTriktor:#{reply_input}\n".colorize(:blue)
-        print "\t\t\t\t\t\tMessage sent!\n\n"
+        puts("------------------------------------------------------------------------------")
+        print"Triktor:#{reply_input}\n".colorize(:blue)
+        puts "                                                              Message sent!\n\n"
         print "Would you like to send another message or go back to profile\n"
-        print "To see another message press '1'\n"
-        print "Or to go back to profile press '2'\n"
+        print "To send another message                                         select: 1\n"
+        print "Or to go back to profile                                        select: 2\n"
+        puts("------------------------------------------------------------------------------")
+        print("Selection: ")
         message_profile_input = gets().strip
         if message_profile_input == '1'
             replying_text()
@@ -247,17 +291,14 @@ class Datingapp
     end
 end
 
-profile1 = Datingapp.new('Trid', '25', 'male', 'Chicago', 'Chicago Bulls', 'Hip Hop', 'Hippo')
+# this is out set profile details, used to access the profile, if you need to log in this is the password that will access the program.
+profile1 = Datingapp.new('Triktor', '25', 'male', 'Chicago', 'Chicago Bulls', 'Hip Hop', 'Hippo')
 profile1.login = 'triktor'
 profile1.password = 'Password1'
 
 
-profile1.display_matches
+profile1.profile_sign_in
 
-# spinner = TTY::Spinner.new("[:spinner] Loading your perfect match ...", format: :pulse_2)
-# spinner.auto_spin # Automatic animation with default interval
-# sleep(2) # Perform task
-# spinner.stop('Done!')
 
-profile1.replying_text
+
 
