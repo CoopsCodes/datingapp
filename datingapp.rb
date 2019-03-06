@@ -94,16 +94,25 @@ class Datingapp #the method defines the data that is involved in the site matche
         puts
         puts("Check messages                              select: 1")
         puts("Check your luuuuurrrrrrvvvvve matches       select: 2")
+        puts("Play in the anonymous chat room             select: 3")
         puts
         puts("--------------------------------- Welcome to Easy Route to Love ---------------------------------")
-        puts("What would you like to do today?")
+        print("What would you like to do today? ")
         static_profile_page_input = gets().chomp.to_i
         if static_profile_page_input == 1
             puts ("Sure lets check your messages hot stuff")
             replying_text()
-            
         elsif static_profile_page_input == 2
             display_matches()
+        elsif static_profile_page_input == 3
+            puts("-------------------------------------------------------------------------------------------------")
+            puts("                                                                                  __          __ ")
+            puts("                                                                            _____/ /_  ____ _/ /_")
+            puts("                                                                           / ___/ __ \\/ __ `/ __/")
+            puts("                                                                          / /__/ / / / /_/ / /_  ")
+            puts("                                                                          \\___/_/ /_/\\__,_/\\__/  ")
+            puts("                                                              Type a Message or 'Exit' to leave")
+            chat_loop()
         else
             puts("Please try that again")
             static_profile_page()
@@ -182,8 +191,8 @@ class Datingapp #the method defines the data that is involved in the site matche
         print("Does this one spark joy? Send them a message ;-)           select: 1\n")
         print("Does this one not spark joy? Then see another              select: 2\n")
         puts
+        print("Selection: ")
         input2 = gets().chomp.downcase
-
         if  input2 == "2"
             puts
             spinner = TTY::Spinner.new("[:spinner] Loading your perfect match ...", format: :pulse_2)
@@ -201,7 +210,7 @@ class Datingapp #the method defines the data that is involved in the site matche
     end
 
     def display_matches
-        print "Do you want to see your new matches?(Y/N)\n"
+        print "Do you want to see your new matches? (Y/N): "
         input = gets().chomp.downcase
         if input == "y"
             puts
@@ -256,7 +265,7 @@ class Datingapp #the method defines the data that is involved in the site matche
         puts
         puts
         sp_quote = Faker::TvShows::Simpsons.quote
-        print "Who do you see in your future, today?\n"
+        print "Who do you see in your future, today? "
         input_read_message = gets().strip
         if input_read_message == "1" 
                 puts "#{celebrity_crushes[0]}: #{sp_quote}".colorize(:light_magenta)
@@ -273,6 +282,7 @@ class Datingapp #the method defines the data that is involved in the site matche
         end
         print "\n"
         puts("What would you like to say hotttt stuffssss?")
+        print("Message: ")
         reply_input = gets.chomp
         puts("------------------------------------------------------------------------------")
         print"Triktor:#{reply_input}\n".colorize(:blue)
@@ -289,6 +299,19 @@ class Datingapp #the method defines the data that is involved in the site matche
             static_profile_page()
         end
     end
+
+    def chat_loop
+        sp_quote = Faker::TvShows::Simpsons.quote
+        print("\nMessage: ")
+        user_chat = gets().chomp.downcase
+        print "Triktor: #{user_chat}\n".colorize(:blue)
+        while user_chat != "exit" do
+            print "\nUser Message: #{sp_quote}\n".colorize(:light_magenta)
+            # gets user_chat
+            chat_loop()
+        end
+        static_profile_page()
+    end
 end
 
 # this is out set profile details, used to access the profile, if you need to log in this is the password that will access the program.
@@ -297,8 +320,4 @@ profile1.login = 'triktor'
 profile1.password = 'Password1'
 
 
-profile1.profile_sign_in
-
-
-
-
+profile1.static_profile_page
